@@ -1,0 +1,22 @@
+steps:
+ 
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+    - '-c'
+    - |
+      gsutil -m cp -r *.html gs://lb-mvp-bucket-images/images
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    env:
+      - 'vmname=${_VM_NAME}'
+      - 'zone=${_ZONE}'
+      - 'mvpsubnet=${_MVP_SUBNET}'
+      - 'USER=${_USER}'
+      - 'templatename=${_VM_NAME}-$BUILD_ID'
+      - 'instancegroup=${_INSTANCE_GROUP}'
+      - 'BUILD=$BUILD_ID'
+      - 'PROJECT_ID=$PROJECT_ID'
+    entrypoint: 'bash'
+    args: ['setup/setup-vm.sh']
+
