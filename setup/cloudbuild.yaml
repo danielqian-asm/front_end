@@ -1,12 +1,4 @@
 steps:
- 
-  - name: 'gcr.io/cloud-builders/gcloud'
-    entrypoint: 'bash'
-    args:
-    - '-c'
-    - |
-      gsutil -m cp -r *.html gs://lb-mvp-bucket-images/images
-
   - name: 'gcr.io/cloud-builders/gcloud'
     env:
       - 'vmname=${_VM_NAME}'
