@@ -31,8 +31,8 @@ apt install yarn -y
 # git clone https://source.developers.google.com/p/${PROJECTID}/r/${REPOSITORY} /opt/app/new-repo
 
 # Install app dependencies
-# mkdir /opt/app
-# mkdir /opt/app/new-repo
+
+# mkdir -p /opt/app/new-repo
 cd /opt/app/new-repo
 yarn install
 

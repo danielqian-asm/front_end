@@ -1,6 +1,6 @@
 # gcloud compute instances create $vmname --provisioning-model=SPOT --zone=$zone --no-address -q --machine-type=e2-small --network-interface=subnet=$mvpsubnet,no-address  --tags=allow-health-check,allow-iap-access
-#gcloud compute ssh $vmname --zone=$zone --command 'sudo apt-get update && sudo apt-get install -y nginx-light jq && sudo chown $USER /var/www/html' -q
-gcloud compute scp  --recurse *  ~ --zone=$zone -q
+gcloud compute ssh $vmname --zone=$zone --command 'mkdir -p /opt/app/new-repo' -q
+gcloud compute scp --recurse *  $vmname:/opt/app/new-repo --zone=$zone -q
 gcloud compute ssh $vmname --zone=$zone --command 'sudo sh ./setup/start.sh' -q
 # gcloud compute instances stop $vmname --zone=$zone
 # #gcloud compute snapshots create $vmname-$BUILD --source-disk=$vmname --source-disk-zone=$zone --storage-location=us
