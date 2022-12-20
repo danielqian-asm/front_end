@@ -1,4 +1,4 @@
-# gcloud compute instances create $vmname --provisioning-model=SPOT --zone=$zone --no-address -q --machine-type=e2-small --network-interface=subnet=$mvpsubnet,no-address  --tags=allow-health-check,allow-iap-access
+gcloud compute instances create $vmname --provisioning-model=SPOT --zone=$zone --no-address -q --machine-type=e2-small --network-interface=subnet=$mvpsubnet,no-address  --tags=allow-health-check,allow-iap-access
 gcloud compute ssh $vmname --zone=$zone --command 'mkdir -p /opt/app/new-repo' -q
 gcloud compute scp --recurse *  $vmname:/opt/app/new-repo --zone=$zone -q
 gcloud compute ssh $vmname --zone=$zone --command 'sudo sh ./setup/start.sh' -q
